@@ -12,16 +12,16 @@ export class AbrirPage implements OnInit {
   }
   ngOnInit() { }
 
-  sendPostRequest() {
+  sendPostRequest(dados) {
 
 
     let postData = JSON.stringify({
-      "autonomo_id": "5",
-      "solicitante_id": "6",
+      "autonomo_id": "dados.autonomo_id",
+      "solicitante_id": "dados.solicitante_id",
       "status": "4",
       "lat": "45.7164",
       "longi": "51.5869",
-      "dia_hora": "2021-01-25 08:07",
+      "dia_hora": "dados.dia_hora",
       "verbo": "POST",
     });
 
