@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
+import { NomeProviderService } from 'src/nome-provider.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-abrir',
@@ -7,12 +9,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['abrir.page.scss'],
 })
 export class AbrirPage implements OnInit {
+  chamados: any;
+  id: any;
 
-  constructor(public http: HttpClient) {
+  constructor(public servidor:  NomeProviderService, public activate: ActivatedRoute) {
   }
   ngOnInit() { }
 
-  sendPostRequest(dados) {
+  abrir(){
+    this.servidor.sendPostRequest(this.chamados);
+  }
+  ionViewWillEnter() {
+    this.activate.queryParams.subscribe(params => {
+        if (params && params.id) {
+          this.id = JSON.parse(params.id);
+          console.log(params);
+        }
+    });
+    this.getRetornar();
+  } 
+  getRetornar(){
+    this.servidor.getPegar("id="+this.id+"&type_user=2&id_user=0").subscribe(data => {
+
+      this.chamados = data;
+      console.log(data)
+    });
+  }
+  /*sendPostRequest(dados) {
 
 
     let postData = JSON.stringify({
@@ -34,5 +57,5 @@ export class AbrirPage implements OnInit {
         console.log(error);
       });
     console.log(postData);
-  }
+  }*/
 }

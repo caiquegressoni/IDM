@@ -8,11 +8,12 @@
 </ion-header>
 
 <ion-content>
+
   <div class="container">
 
     <ion-item>
       <ion-label position="floating">Tipo de Material</ion-label>
-      <ion-input></ion-input>
+      <ion-label>{{chamados.materiais}}</ion-label>
     </ion-item>
 
   </div>
@@ -27,7 +28,7 @@
     <br>
     
     <br><br>
-    <ion-button color="success" (click)="sendPostRequest()">Abrir Chamado</ion-button>
+    <ion-button color="success" (click)="abrir()">Abrir Chamado</ion-button>
 
   </div>
 </ion-content>
